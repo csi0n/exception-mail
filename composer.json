@@ -9,7 +9,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "csi0n\\ExceptionMail\\": "src/"
+            "csi0n\\ExceptionEmail\\": "src/"
         }
     }
 }
