@@ -1,7 +1,7 @@
 {
     "name": "csi0n/exception-mail",
     "description": "send exception mail for laravel",
-    "minimum-stability": "1.0.0.x-dev",
+    "minimum-stability": "dev",
     "authors": [{
         "name": "csi0n",
         "email": "chqssqll@gmail.com"
