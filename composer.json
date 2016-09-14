@@ -1,16 +1,15 @@
 {
-  "name": "csi0n/exception-mail",
-  "description": "send exception mail for laravel",
-  "authors": [
-    {
-      "name": "csi0n",
-      "email": "chqssqll@gmail.com"
+    "name": "csi0n/exception-mail",
+    "description": "send exception mail for laravel",
+    "minimum-stability": "1.0.0",
+    "authors": [{
+        "name": "csi0n",
+        "email": "chqssqll@gmail.com"
+    }],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "csi0n\\ExceptionMail\\": "src/"
+        }
     }
-  ],
-  "require": {},
-  "autoload": {
-    "psr-4": {
-      "csi0n\\ExceptionMail\\": "src/"
-    }
-  }
 }
