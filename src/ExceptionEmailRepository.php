@@ -12,24 +12,38 @@ use Mail;
 class ExceptionEmailRepository
 {
     protected $app;
-
+    protected $email;
+    protected $name;
+    protected $subject;
+    protected $ignore;
     /**
      * ExceptionEmailRepository constructor.
      */
     public function __construct($app)
     {
         $this->app = $app;
+        $this->email=config('exception_mail.email');
+        $this->name=config('exception_mail.name');
+        $this->subject=config('exception_mail.subject');
+        $this->ignore=config('exception_mail.ignore');
     }
 
-    public function send($to_data, $e)
+    public function send($e)
     {
-        if (empty($to_data['email']) || empty($to_data['name']) || empty($to_data['subject'])) {
-            return false;
+      if (!empty($this->email)&&!empty($this->name)) {
+        $send=false;
+        foreach ($this->ignore as $k) {
+          if ($k instanceof $e) {
+            $send=true;
+          }
         }
-        $to_data['e'] = $e;
-        Mail::send('vendor.csi0n.mail.exception', $to_data, function ($message) use ($to_data) {
-            $message->to($to_data['email'], $to_data['name'])->subject($to_data['subject']);
-        });
-        return true;
+        if ($send) {
+          Mail::send('vendor.csi0n.mail.exception', ['exception'=>$e], function ($message){
+              $message->to($this->email, $this->name)->subject($this->subject);
+          });
+          return true;
+        }
+      }
+      return false;
     }
 }
