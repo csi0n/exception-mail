@@ -1,4 +1,5 @@
 <?php
+
 namespace csi0n\Exception;
 
 use Mail;
@@ -9,48 +10,55 @@ use Mail;
  * Date: 9/14/16
  * Time: 17:05
  */
-class ExceptionRepository
-{
-    protected $app;
-    protected $email;
-    protected $name;
-    protected $subject;
-    protected $ignore;
-    protected $enable;
+class ExceptionRepository {
+	protected $app;
+	protected $email;
+	protected $name;
+	protected $subject;
+	protected $ignore;
+	protected $enable;
 
-    /**
-     * ExceptionEmailRepository constructor.
-     */
-    public function __construct($app)
-    {
-        $this->app     = $app;
-        $this->email   = config('exception_mail.email');
-        $this->name    = config('exception_mail.name');
-        $this->subject = config('exception_mail.subject');
-        $this->ignore  = config('exception_mail.ignore');
-        $this->enable  = config('exception_mail.enable');
-    }
+	/**
+	 * ExceptionEmailRepository constructor.
+	 */
+	public function __construct( $app ) {
+		$this->app     = $app;
+		$this->email   = config( 'exception_mail.email' );
+		$this->name    = config( 'exception_mail.name' );
+		$this->subject = config( 'exception_mail.subject' );
+		$this->ignore  = config( 'exception_mail.ignore' );
+		$this->enable  = config( 'exception_mail.enable' );
+	}
 
-    public function send($e)
-    {
-        if (!$this->enable) {
-            return false;
-        }
+	/**
+	 * @return mixed
+	 */
+	public function getIgnore() {
+		return empty( $this->ignore ) ? [] : $this->ignore;
+	}
 
-        if (!empty($this->email) && !empty($this->name)) {
-            $send = true;
-            foreach ($this->ignore as $k) {
-                if ($e instanceof $k) {
-                    $send = false;
-                }
-            }
-            if ($send) {
-                Mail::send('vendor.csi0n.mail.exception', ['exception' => $e], function ($message) {
-                    $message->to($this->email, $this->name)->subject($this->subject);
-                });
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSubject() {
+		return $this->subject;
+	}
+
+	public function isEnable() {
+		return $this->enable;
+	}
 }
