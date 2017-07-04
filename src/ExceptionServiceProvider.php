@@ -1,7 +1,7 @@
 <?php
-namespace csi0n\ExceptionEmail;
+namespace csi0n\Exception;
 
-use csi0n\ExceptionEmail\ExceptionEmail;
+use csi0n\Exception\Exception;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -10,14 +10,14 @@ use Illuminate\Support\ServiceProvider;
  * Date: 9/14/16
  * Time: 16:50
  */
-class ExceptionMailServiceProvider extends ServiceProvider
+class ExceptionServiceProvider extends ServiceProvider
 {
 
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/views', 'csi0n');
         $this->publishes([
-            __DIR__ . '/views' => base_path('resources/views/vendor/csi0n/mail'),
+            __DIR__ . '/views'                     => base_path('resources/views/vendor/csi0n/mail'),
             __DIR__ . '/config/exception_mail.php' => config_path('exception_mail.php'),
         ]);
     }
@@ -29,13 +29,13 @@ class ExceptionMailServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['ExceptionEmailRepository'] = $this->app->singleton('ExceptionEmailRepository', function ($app) {
-            return new ExceptionEmailRepository($app);
+        $this->app['ExceptionRepository'] = $this->app->singleton('ExceptionRepository', function ($app) {
+            return new ExceptionRepository($app);
         });
     }
 
     public function provides()
     {
-        return ['ExceptionEmailRepository'];
+        return ['ExceptionRepository'];
     }
 }

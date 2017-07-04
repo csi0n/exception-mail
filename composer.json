@@ -1,5 +1,5 @@
 {
-    "name": "csi0n/exception-mail",
+    "name": "csi0n/laravel-excetion",
     "description": "send exception mail for laravel",
     "minimum-stability": "dev",
     "authors": [{
@@ -9,7 +9,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "csi0n\\ExceptionEmail\\": "src/"
+            "csi0n\\Exception\\": "src/"
         }
     }
 }

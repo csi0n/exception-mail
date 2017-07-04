@@ -1,13 +1,9 @@
-
-
-##Installation
-
-Via Composer:
+##安装
 
 ```
-composer require csi0n/exception-mail
+composer require csi0n/laravel-excetion
 ```
-
+或者在`composer.json`中添加
 ```
  "require": {
 
@@ -15,11 +11,12 @@ composer require csi0n/exception-mail
 }
 
 ```
+然后执行`composer update`
 
 
-##Usage
+##使用方法
 
-`config/app.php`
+在`config/app.php`中添加
 ```
 'providers' => [
    csi0n\ExceptionEmail\ExceptionMailServiceProvider::class,

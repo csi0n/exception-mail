@@ -1,5 +1,5 @@
 <?php
-namespace csi0n\ExceptionEmail\Facades;
+namespace csi0n\Exception\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Facade;
  * Date: 9/14/16
  * Time: 17:10
  */
-class ExceptionEmailFacade extends Facade
+class ExceptionFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'ExceptionEmailRepository';
+        return 'ExceptionRepository';
     }
 }

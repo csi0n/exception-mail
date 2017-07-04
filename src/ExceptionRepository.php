@@ -1,5 +1,5 @@
 <?php
-namespace csi0n\ExceptionEmail;
+namespace csi0n\Exception;
 
 use Mail;
 
@@ -9,7 +9,7 @@ use Mail;
  * Date: 9/14/16
  * Time: 17:05
  */
-class ExceptionEmailRepository
+class ExceptionRepository
 {
     protected $app;
     protected $email;
@@ -23,18 +23,20 @@ class ExceptionEmailRepository
      */
     public function __construct($app)
     {
-        $this->app = $app;
-        $this->email = config('exception_mail.email');
-        $this->name = config('exception_mail.name');
+        $this->app     = $app;
+        $this->email   = config('exception_mail.email');
+        $this->name    = config('exception_mail.name');
         $this->subject = config('exception_mail.subject');
-        $this->ignore = config('exception_mail.ignore');
-        $this->enable = config('exception_mail.enable');
+        $this->ignore  = config('exception_mail.ignore');
+        $this->enable  = config('exception_mail.enable');
     }
 
     public function send($e)
     {
-        if (!$this->enable)
+        if (!$this->enable) {
             return false;
+        }
+
         if (!empty($this->email) && !empty($this->name)) {
             $send = true;
             foreach ($this->ignore as $k) {
